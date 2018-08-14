@@ -1,0 +1,54 @@
+
+birthday_submissions.birthday_form:
+  path: '/birthday/form'
+  defaults:
+    _form: '\Drupal\birthday_submissions\Form\BirthdayForm'
+    _title: 'BirthdayForm'
+  requirements:
+    _access: 'TRUE'
+  
+
+birthday_submissions.default_controller_display:
+  path: 'admin/birthday/display'
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\DefaultController::display'
+    _title: 'display'
+  requirements:
+    _permission: 'access content'
+
+birthday_submissions.default_controller_update:
+  path: 'admin/birthday/update/{id}/{status}'
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\DefaultController::update'
+    _title: 'display'
+  requirements:
+    _permission: 'access content'
+
+birthday_submissions.a_p_i_controller_get:
+  path: '/birthday/get.json'
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\APIController::get'
+  methods:  [GET]
+  requirements:
+    _access: 'TRUE'
+birthday_submissions.a_p_i_controller_put:
+  path: '/birthday/put.json'
+  methods:  [PUT]
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\APIController::put'
+  requirements:
+    _access: 'TRUE'
+birthday_submissions.a_p_i_controller_post:
+  methods:  [POST]
+  path: '/birthday/post.json'
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\APIController::post'
+  requirements:
+    _access: 'TRUE'
+birthday_submissions.a_p_i_controller_delete:
+  methods:  [DELETE]
+  path: '/birthday/delete.json'
+  defaults:
+    _controller: '\Drupal\birthday_submissions\Controller\APIController::delete'
+  requirements:
+    _access: 'TRUE'

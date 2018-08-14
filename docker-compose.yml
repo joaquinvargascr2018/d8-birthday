@@ -1,0 +1,43 @@
+version: '3'
+services:
+  nginx:
+    build: ./docker/nginx
+    volumes:
+      - ./project:/var/www/html/
+    depends_on:
+      - php
+    ports:
+      - 8080:80
+    command: [nginx-debug, '-g', 'daemon off;']
+  php:
+    build: ./docker/php
+    depends_on:
+      - database
+    volumes:
+      - ./project:/var/www/html/
+  database:
+    command: --default-authentication-plugin=mysql_native_password
+    build: ./docker/mariadb
+    environment:
+      MYSQL_DATABASE: drupal8
+      MYSQL_USER: drupal8
+      MYSQL_PASSWORD: drupal8
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./datadir:/var/lib/mysql
+      - ./dump:/dump
+  pma:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: "database"
+      PMA_PORT: 3306
+      PMA_USER: "drupal8"
+      PMA_PASSWORD: "drupal8"
+    ports:
+      - 8081:80
+  mailhog:
+      image: mailhog/mailhog
+      ports:
+        - "1025:1025"
+        - "8025:8025"

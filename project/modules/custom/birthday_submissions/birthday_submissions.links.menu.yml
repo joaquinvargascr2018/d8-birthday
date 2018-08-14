@@ -1,0 +1,6 @@
+birthday_submissions.default_controller_display:
+  title: 'Birthday Submissions'
+  route_name: birthday_submissions.default_controller_display
+  description: 'Birthday Submissions Admin'
+  parent: system.admin_config_system
+  weight: 99

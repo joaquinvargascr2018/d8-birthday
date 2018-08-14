@@ -1,0 +1,5 @@
+# ingore database folder
+datadir
+# ignore ide configurations
+.idea
+.vscode
